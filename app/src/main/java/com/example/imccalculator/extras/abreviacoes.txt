@@ -4,3 +4,4 @@ ctv = checkedTextView
 tv = textView
 bt = button
 sw = switch
+lv = listView

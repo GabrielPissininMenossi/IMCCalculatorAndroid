@@ -7,4 +7,8 @@
     <item
         android:id="@+id/opc_fechar"
         android:title="Fechar"/>
+
+    <item
+        android:id="@+id/opc_consultar_historico"
+        android:title="Consultar Histórico"/>
 </menu>

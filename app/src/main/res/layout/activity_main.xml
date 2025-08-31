@@ -8,6 +8,15 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <EditText
+        android:id="@+id/etNomeMain"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="25dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Seu nome aqui..." />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,10 +27,14 @@
 
         <SeekBar
             android:id="@+id/sbAlturaMain"
+            style="@android:style/Widget.SeekBar"
             android:layout_width="219dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp" />
+            android:layout_marginRight="25dp"
+            android:max="250"
+            android:min="110"
+            android:progress="170" />
 
         <TextView
             android:id="@+id/tvAlturaMain"
@@ -38,7 +51,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="25dp"
-        android:text="Sua altura..." />
+        android:text="Sua altura (M)" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,16 +62,20 @@
 
         <SeekBar
             android:id="@+id/sbPesoMain"
+            style="@android:style/Widget.SeekBar"
             android:layout_width="219dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp" />
+            android:layout_marginRight="25dp"
+            android:max="250"
+            android:min="10"
+            android:progress="72" />
 
         <TextView
             android:id="@+id/tvPesoMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="72.0" />
+            android:text="72" />
 
     </LinearLayout>
 
@@ -69,12 +86,12 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="25dp"
-        android:text="Seu peso..." />
+        android:text="Seu peso (KG)" />
 
     <Switch
         android:id="@+id/swMulherMain"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_gravity="left"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
@@ -115,9 +132,9 @@
                     android:id="@+id/tvIndiceMain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="25dp"
+                    android:layout_margin="15dp"
                     android:layout_weight="1"
-                    android:text="24.9"
+                    android:text="24.22"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -125,9 +142,9 @@
                     android:id="@+id/tvInfoMain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="25dp"
+                    android:layout_margin="15dp"
                     android:layout_weight="1"
-                    android:text="Normal"
+                    android:text="Peso Ideal!"
                     android:textSize="24sp"
                     android:textStyle="bold" />
             </LinearLayout>

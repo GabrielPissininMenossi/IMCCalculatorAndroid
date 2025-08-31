@@ -1,0 +1,6 @@
+et = editText
+sb = seekBar
+ctv = checkedTextView
+tv = textView
+bt = button
+sw = switch

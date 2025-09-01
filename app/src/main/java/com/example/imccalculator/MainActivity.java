@@ -1,6 +1,7 @@
 package com.example.imccalculator;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //carregar os dados uma vez salvos
+        carregarSharedPreferences();
         carregarDados();
     }
 
@@ -156,8 +158,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop(){
         super.onStop();
 
-        //persistir as informações no arquivo .dat
         try {
+            //fazer primeiro o shared preferences
+            SharedPreferences sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("peso", sbPesoMain.getProgress());
+            editor.putInt("altura", sbAlturaMain.getProgress());
+            editor.putString("nome", String.valueOf(etNomeMain.getText()));
+            if(swMulherMain.isChecked())
+                editor.putString("sexo", "mulher");
+            else
+                editor.putString("sexo", "homem");
+            editor.commit();
+
+            //fazer a persistência no arquivo físico
+            //persistir as informações no arquivo .dat
             FileOutputStream fileOutputStream = openFileOutput("dados.dat", MODE_PRIVATE);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(Singleton.infoList);
@@ -266,5 +281,20 @@ public class MainActivity extends AppCompatActivity {
         catch (Exception e){
             Log.e("Erro ao carregar os dados\n", e.getMessage());
         }
+    }
+
+    private void carregarSharedPreferences(){
+        SharedPreferences sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
+        String nome = sharedPreferences.getString("nome","Seu nome aqui...");
+        etNomeMain.setText(nome);
+        int altura = sharedPreferences.getInt("altura",(int)170);
+        sbAlturaMain.setProgress(altura);
+        int peso = sharedPreferences.getInt("peso",(int)70);
+        sbPesoMain.setProgress(peso);
+        if(sharedPreferences.getString("sexo","").toUpperCase().equals("MULHER"))
+            swMulherMain.setChecked(true);
+        else
+            swMulherMain.setChecked(false);
+        calcularIMC(sbAlturaMain.getProgress(),sbPesoMain.getProgress());
     }
 }
